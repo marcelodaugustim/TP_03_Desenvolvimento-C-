@@ -1,0 +1,26 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.Design;
+using System.Linq;
+using System.Text;
+
+namespace TesteDataAniversario
+{
+    class Pessoa
+    {
+
+        public string Nome { get; set; }
+        public string Sobrenome { get; set; }
+        public DateTime DataNascimento { get; set; }
+        public DateTime DiaAniversario { get; set; }
+
+        public void CalcularQuantosDiasFaltam()
+        {
+          
+            double TimeSpan = DiaAniversario.Subtract(DateTime.Today).TotalDays;
+            Console.WriteLine($"Faltam {TimeSpan} dias para o seu aniversário.");
+
+        }
+      }
+}
