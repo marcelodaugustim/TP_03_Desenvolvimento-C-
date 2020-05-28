@@ -1,0 +1,95 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.Tracing;
+using System.Linq;
+
+
+namespace TesteDataAniversario
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            #region Exemplo
+            //    Console.WriteLine(" Agenda de Aniversário");
+
+            //    var pessoa = new Pessoa();
+            //    Console.WriteLine("Digite o seu nome: ");
+            //    string nome = Console.ReadLine();
+            //    Console.WriteLine("Digite o seu sobrenome: ");
+            //    string sobrenome = Console.ReadLine();
+            //    Console.WriteLine("Informe a data do seu próximo aniversário, no formato dd/mm/yyyy:");
+            //    pessoa.DiaAniversario = DateTime.Parse(Console.ReadLine());
+            //    pessoa.CalcularQuantosDiasFaltam();
+
+
+            //var aniversarioList = new List<Pessoa>();
+            #endregion
+
+            List<Pessoa> aniversarioList = new List<Pessoa>();
+
+            Console.WriteLine("Agenda de Aniversário");
+
+            while (true)
+            {
+
+                Console.WriteLine("Menu:");
+
+                Console.WriteLine(" 1 - Inserir");
+                Console.WriteLine(" 2 - Pesquisar");
+                Console.WriteLine(" 3 - Sair ");
+               
+                Console.Write("Digite a opção desejada: ");
+                string opcaoEscolhida = Console.ReadLine();
+
+                Console.WriteLine("*************************");
+
+                if (opcaoEscolhida == "1")
+                {
+                    var pessoa = new Pessoa();
+                    Console.Write("Digite o seu nome: "); 
+                    string nome = Console.ReadLine();
+                    Console.Write("Digite o seu sobrenome: ");
+                    string sobrenome = Console.ReadLine();       
+                    Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
+                    pessoa.DiaAniversario = DateTime.Parse(Console.ReadLine());
+                    pessoa.CalcularQuantosDiasFaltam();
+                    Console.WriteLine("***************************************");
+
+                    aniversarioList.Add(pessoa);
+                }
+                if (opcaoEscolhida == "2")
+                    {
+                    //var pessoa1 = new Pessoa();
+                    //Console.WriteLine("Digite o nome da pessoa que você quer pesquisar:");
+                    //string nome = Console.ReadLine();
+                    //foreach (Pessoa p in aniversarioList)
+                    //{
+                    //    if( pessoa1 == p )
+                    //    {
+                    //       p.CalcularQuantosDiasFaltam();
+                    //    }
+                    }
+                    
+                else if (opcaoEscolhida == "3")
+                {
+                    break;
+                }
+               
+                Console.WriteLine("Voltar para o Menu? (S/N) ");
+                var segundaOpcao = Console.ReadLine();
+                if (segundaOpcao == "N")
+                {
+                    break;
+                }
+
+             Console.WriteLine("****************************************");
+
+
+            }
+        }
+  
+    }
+    
+}
