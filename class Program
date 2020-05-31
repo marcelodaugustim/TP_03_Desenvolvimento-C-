@@ -11,7 +11,7 @@ namespace TP3_DesenvolvimentoC
         static void Main(string[] args)
         {
 
-            List<Pessoa> listaAniversarios = new List<Pessoa>();
+            List<Pessoa> listaAniversarios = new List<Pessoa>();  // Criação de lista do tipo Pessoa
 
             Console.WriteLine("Agenda de Aniversário");
             
@@ -32,15 +32,25 @@ namespace TP3_DesenvolvimentoC
                 if (opcaoEscolhida == "1")
                 {
                     var aniversariante = new Pessoa();
-                    aniversariante.CriarPessoa();
-                    listaAniversarios.Add(aniversariante);
+                    aniversariante.CriarPessoa();                   // Chamando o método para criar uma pessoa
+                    listaAniversarios.Add(aniversariante);         // Adicionar essa pessoa na lista criada
                 }
               
-               foreach (Pessoa pessoas in listaAniversarios)
+               foreach (Pessoa pessoas in listaAniversarios)       
                 {
-                    Console.WriteLine(pessoas.Nome);
+                    Console.WriteLine(pessoas.Nome);               // Ao invés de aparecer o nome da pessoa, aparece o namespace do projeto
                 }
             }
+            if (opcaoEscolhida == "2")
+            {
+            }
+            
+            if (opcaoEscolhida == "2")
+            {
+              break;
+            }
+            
+            
         }
 
     }
