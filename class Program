@@ -43,6 +43,16 @@ namespace TP3_DesenvolvimentoC
             }
             if (opcaoEscolhida == "2")
             {
+            var pessoa1 = new Pessoa();
+            Console.WriteLine("Digite o nome da pessoa que você quer pesquisar:");
+            string nome1 = Console.ReadLine();
+            
+            foreach (Pessoa p in listaAniversario)
+            {
+            if (pessoa1 == p)
+              {
+               p.CalcularQuantosDiasFaltam();
+              }
             }
             
             if (opcaoEscolhida == "2")
