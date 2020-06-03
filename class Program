@@ -4,20 +4,22 @@ using System.Diagnostics.Tracing;
 using System.Linq;
 
 
-namespace TP3_DesenvolvimentoC
+namespace TesteDataAniversario
 {
     class Program
     {
         static void Main(string[] args)
-        {
+        { 
 
-            List<Pessoa> listaAniversarios = new List<Pessoa>();  // Criação de lista do tipo Pessoa
+            //var aniversarioList = new List<Pessoa>();
+            #endregion
+
+            var aniversarioList = new List<Pessoa>();
 
             Console.WriteLine("Agenda de Aniversário");
-            
+
             while (true)
             {
-
                 Console.WriteLine("Menu:");
 
                 Console.WriteLine(" 1 - Inserir");
@@ -31,37 +33,57 @@ namespace TP3_DesenvolvimentoC
 
                 if (opcaoEscolhida == "1")
                 {
-                    var aniversariante = new Pessoa();
-                    aniversariante.CriarPessoa();                   // Chamando o método para criar uma pessoa
-                    listaAniversarios.Add(aniversariante);         // Adicionar essa pessoa na lista criada
+                    Console.Write("Digite o seu nome: ");
+                    string nome = Console.ReadLine();
+                    Console.Write("Digite o seu sobrenome: ");
+                    string sobrenome = Console.ReadLine();
+                    Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
+                    DateTime aniversario = DateTime.Parse(Console.ReadLine());
+                    Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
+                    aniversarioList.Add(aniversariante);
+                    aniversariante.CalcularQuantosDiasFaltam();
+                    Console.WriteLine("***************************************");
+
                 }
-              
-               foreach (Pessoa pessoas in listaAniversarios)       
+                else if (opcaoEscolhida=="2")
                 {
-                    Console.WriteLine(pessoas.Nome);               // Ao invés de aparecer o nome da pessoa, aparece o namespace do projeto
+                    Console.WriteLine("Digite o nome da pessoa que deseja pesquisar :");
+                    var nome = Console.ReadLine();
+
+
+                    foreach (Pessoa x in aniversarioList)
+                    {
+                        if (nome == x.Nome)
+                    {
+                            Console.WriteLine(x.Nome);
+                            x.CalcularQuantosDiasFaltam();
+
+                            Console.WriteLine("***************************");
+                        }
+
+                    }
+                  
                 }
+
+                else if (opcaoEscolhida == "3")
+                {
+                    break;
+                }
+
+                Console.WriteLine("Voltar para o Menu? (S/N) ");
+                var segundaOpcao = Console.ReadLine();
+                if (segundaOpcao == "N")
+                {
+                    break;
+                }
+
+                Console.WriteLine("****************************************");
+
+
             }
-            if (opcaoEscolhida == "2")
-            {
-            var pessoa1 = new Pessoa();
-            Console.WriteLine("Digite o nome da pessoa que você quer pesquisar:");
-            string nome1 = Console.ReadLine();
-            
-            foreach (Pessoa p in listaAniversario)
-            {
-            if (pessoa1 == p)
-              {
-               p.CalcularQuantosDiasFaltam();
-              }
-            }
-            
-            if (opcaoEscolhida == "2")
-            {
-              break;
-            }
-            
-            
         }
 
     }
-}
+        }
+
+    
