@@ -3,62 +3,74 @@ using System.Collections.Generic;
 using System.Diagnostics.Tracing;
 using System.Linq;
 
-
-namespace TP3_DesenvolvimentoC
+namespace TP_03
 {
     class Program
     {
+     Lista criada como propriedade da classe
+     static List<Pessoa> AniversarioList = new List<Pessoa>();
+
+     
+
         static void Main(string[] args)
         {
-            #region Criação da lista
-            List<Pessoa> listaAniversarios = new List<Pessoa>();
-            #endregion
-            
-            Console.WriteLine("AGENDA DE ANIVERSÁRIOS\r\n");
-            
 
-            while (true)                        // Laço de repetição do Menu
+            Método para criação de um objeto do tipo Pessoa
+            static void CriarPessoa()
             {
+                Console.Write("Digite o seu nome: ");
+                string nome = Console.ReadLine();
+                Console.Write("Digite o seu sobrenome: ");
+                string sobrenome = Console.ReadLine();
+                Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
+                DateTime aniversario = DateTime.Parse(Console.ReadLine());
+                Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
+                AniversarioList.Add(aniversariante);
+                aniversariante.CalcularQuantosDiasFaltam();
 
-                Console.WriteLine("MENU \r\n");
+                Console.WriteLine("***************************************");
+            }
+          
 
-                Console.WriteLine(" 1 - Cadastrar ");
+            Console.WriteLine("Agenda de Aniversário");
+
+
+          
+            while (true)
+            {
+                Console.WriteLine("Menu:");
+
+                Console.WriteLine(" 1 - Inserir");
                 Console.WriteLine(" 2 - Pesquisar");
-                Console.WriteLine(" 3 - Sair \r\n");
+                Console.WriteLine(" 3 - Sair ");
 
                 Console.Write("Digite a opção desejada: ");
-                int opcaoEscolhida = Convert.ToInt32(Console.ReadLine());       // Conversão de int para string
-              
-                switch (opcaoEscolhida)                                        // Uso do switch
+                int opcaoEscolhida = Convert.ToInt32(Console.ReadLine());
+
+                Console.WriteLine("*************************");
+          
+             
+                switch (opcaoEscolhida)
                 {
-                    case 1:                                                   // Criação de um objeto do tipo Pessoa
-                        var aniversariante = new Pessoa();
-                        Console.Write("Digite o seu nome: ");
-                        string nome = Console.ReadLine();
-                        aniversariante.Nome = nome;
-                        Console.Write("Digite o seu sobrenome: ");
-                        string sobrenome = Console.ReadLine();
-                        aniversariante.Sobrenome = sobrenome;
-                        Console.WriteLine("Agora,informe a data do seu próximo aniversário (dd/mm/aaaa): ");
-                        aniversariante.DiadoAniversario = DateTime.Parse(Console.ReadLine());   // Conversão de DateTime para string
-                        listaAniversarios.Add(aniversariante);               // Adicionamos na lista, o objeto criado
-                        aniversariante.CalcularQuantosDiasFaltam();          // Método criado na classe Pessoa, que calcula a diferença de datas
-                       
+                    case 1:
+                        CriarPessoa();
+
 
                         break;
-                    
-                    case 2:                                                  // Pesquisa 
-                        
-                    Console.Write("Digite o nome da pessoa que deseja pesquisar :");
-                    var pesquisaNome = Console.ReadLine();
-                    Console.Write("Digite o sobrenome da pessoa que deseja pesquisar :");
-                    var pesquisaSobrenome = Console.ReadLine();
 
-                        foreach (Pessoa x in listaAniversarios)          // Para cada objeto Pessoa adicionado na lista
+
+                    case 2:
+
+                        Console.Write("Digite o nome da pessoa que deseja pesquisar: ");
+                        var pesquisaNome = Console.ReadLine();
+                        Console.Write("Digite o sobrenome da pessoa que deseja pesquisar: ");
+                        var pesquisaSobrenome = Console.ReadLine();
+
+                        foreach (Pessoa x in AniversarioList)          // Para cada objeto Pessoa adicionado na lista
                         {
-                            if (pesquisaNome == x.Nome && pesquisaSobrenome == x.Sobrenome) 
+                            if (pesquisaNome == x.Nome && pesquisaSobrenome == x.Sobrenome)
                             {
-                               Console.WriteLine($"Olá , {x.Nome} {x.Sobrenome} "); x.CalcularQuantosDiasFaltam();
+                                Console.WriteLine($"Olá , {x.Nome} {x.Sobrenome} "); x.CalcularQuantosDiasFaltam();
 
                             }
                         }
@@ -66,10 +78,10 @@ namespace TP3_DesenvolvimentoC
                         break;
 
                     case 3:
-                       
                         break;
                 }
 
+            
                 Console.WriteLine("Voltar para o Menu? (S/N) ");
                 var segundaOpcao = Console.ReadLine();
                 if (segundaOpcao == "N")
@@ -77,14 +89,16 @@ namespace TP3_DesenvolvimentoC
                     break;
                 }
 
+                Console.WriteLine("****************************************");
+                
 
-            }
+           } \\ chave while
+          
+        }\\ chave main
+    }\\ chave program
+   
+}\\ chave namespace
 
 
-        }
-    }
-        
-
-}
 
     
