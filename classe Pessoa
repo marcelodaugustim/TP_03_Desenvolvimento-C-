@@ -7,34 +7,30 @@ using System.Text;
 
 namespace TesteDataAniversario
 {
-    class Pessoa
+   class Pessoa
     {
-
         public string Nome { get; set; }
         public string Sobrenome { get; set; }
-        public DateTime DataNascimento { get; set; }
-        public DateTime DiaAniversario { get; set; }
+        public DateTime DiadoAniversario { get; set; }
 
-        public void CriarPessoa()
-        {
-            var aniversariante = new Pessoa();
-            Console.Write("Digite o seu nome: ");
-            string nome = Console.ReadLine();
-            aniversariante.Nome = nome;
-            Console.Write("Digite o seu sobrenome: ");
-            string sobrenome = Console.ReadLine();
-            aniversariante.Sobrenome = sobrenome;
-            Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
-            aniversariante.DiadoAniversario = DateTime.Parse(Console.ReadLine());
-            aniversariante.CalcularQuantosDiasFaltam();
-
-        }
+    
 
         public void CalcularQuantosDiasFaltam()
         {
-            double TimeSpan = DiadoAniversario.Subtract(DateTime.Today).TotalDays;
-            Console.WriteLine($"Faltam {TimeSpan} dias para o seu aniversário.");
+            double diferençaDatas = DiadoAniversario.Subtract(DateTime.Today).TotalDays;
+            
+            if(diferençaDatas == 0)
+            {
+                Console.WriteLine($"Parabéns!!!!!! Hoje é o seu aniversário.\r\n");
+            }
+            else
+            {
+                Console.WriteLine($"Falta(m) {diferençaDatas} dia(s) para o seu aniversário.\r\n");
+            }
+        }  
+            
+    }
 
-        }
-      
+}
+
       
