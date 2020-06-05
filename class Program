@@ -4,70 +4,70 @@ using System.Diagnostics.Tracing;
 using System.Linq;
 
 
-namespace TesteDataAniversario
+namespace TP3_DesenvolvimentoC
 {
     class Program
     {
         static void Main(string[] args)
-        { 
-
-            //var aniversarioList = new List<Pessoa>();
+        {
+            #region Criação da lista
+            List<Pessoa> listaAniversarios = new List<Pessoa>();
             #endregion
+            
+            Console.WriteLine("AGENDA DE ANIVERSÁRIOS\r\n");
+            
 
-            var aniversarioList = new List<Pessoa>();
-
-            Console.WriteLine("Agenda de Aniversário");
-
-            while (true)
+            while (true)                        // Laço de repetição do Menu
             {
-                Console.WriteLine("Menu:");
 
-                Console.WriteLine(" 1 - Inserir");
+                Console.WriteLine("MENU \r\n");
+
+                Console.WriteLine(" 1 - Cadastrar ");
                 Console.WriteLine(" 2 - Pesquisar");
-                Console.WriteLine(" 3 - Sair ");
+                Console.WriteLine(" 3 - Sair \r\n");
 
                 Console.Write("Digite a opção desejada: ");
-                string opcaoEscolhida = Console.ReadLine();
-
-                Console.WriteLine("*************************");
-
-                if (opcaoEscolhida == "1")
+                int opcaoEscolhida = Convert.ToInt32(Console.ReadLine());       // Conversão de int para string
+              
+                switch (opcaoEscolhida)                                        // Uso do switch
                 {
-                    Console.Write("Digite o seu nome: ");
-                    string nome = Console.ReadLine();
-                    Console.Write("Digite o seu sobrenome: ");
-                    string sobrenome = Console.ReadLine();
-                    Console.WriteLine("Agora,informe a data do seu próximo aniversário ,que iremos calcular quantos dias faltam. ");
-                    DateTime aniversario = DateTime.Parse(Console.ReadLine());
-                    Pessoa aniversariante = new Pessoa(nome, sobrenome, aniversario);
-                    aniversarioList.Add(aniversariante);
-                    aniversariante.CalcularQuantosDiasFaltam();
-                    Console.WriteLine("***************************************");
+                    case 1:                                                   // Criação de um objeto do tipo Pessoa
+                        var aniversariante = new Pessoa();
+                        Console.Write("Digite o seu nome: ");
+                        string nome = Console.ReadLine();
+                        aniversariante.Nome = nome;
+                        Console.Write("Digite o seu sobrenome: ");
+                        string sobrenome = Console.ReadLine();
+                        aniversariante.Sobrenome = sobrenome;
+                        Console.WriteLine("Agora,informe a data do seu próximo aniversário (dd/mm/aaaa): ");
+                        aniversariante.DiadoAniversario = DateTime.Parse(Console.ReadLine());   // Conversão de DateTime para string
+                        listaAniversarios.Add(aniversariante);               // Adicionamos na lista, o objeto criado
+                        aniversariante.CalcularQuantosDiasFaltam();          // Método criado na classe Pessoa, que calcula a diferença de datas
+                       
 
-                }
-                else if (opcaoEscolhida=="2")
-                {
-                    Console.WriteLine("Digite o nome da pessoa que deseja pesquisar :");
-                    var nome = Console.ReadLine();
+                        break;
+                    
+                    case 2:                                                  // Pesquisa 
+                        
+                    Console.Write("Digite o nome da pessoa que deseja pesquisar :");
+                    var pesquisaNome = Console.ReadLine();
+                    Console.Write("Digite o sobrenome da pessoa que deseja pesquisar :");
+                    var pesquisaSobrenome = Console.ReadLine();
 
+                        foreach (Pessoa x in listaAniversarios)          // Para cada objeto Pessoa adicionado na lista
+                        {
+                            if (pesquisaNome == x.Nome && pesquisaSobrenome == x.Sobrenome) 
+                            {
+                               Console.WriteLine($"Olá , {x.Nome} {x.Sobrenome} "); x.CalcularQuantosDiasFaltam();
 
-                    foreach (Pessoa x in aniversarioList)
-                    {
-                        if (nome == x.Nome)
-                    {
-                            Console.WriteLine(x.Nome);
-                            x.CalcularQuantosDiasFaltam();
-
-                            Console.WriteLine("***************************");
+                            }
                         }
 
-                    }
-                  
-                }
+                        break;
 
-                else if (opcaoEscolhida == "3")
-                {
-                    break;
+                    case 3:
+                       
+                        break;
                 }
 
                 Console.WriteLine("Voltar para o Menu? (S/N) ");
@@ -77,13 +77,14 @@ namespace TesteDataAniversario
                     break;
                 }
 
-                Console.WriteLine("****************************************");
-
 
             }
-        }
 
-    }
+
         }
+    }
+        
+
+}
 
     
